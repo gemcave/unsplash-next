@@ -1,0 +1,6 @@
+node_modules
+public/img/
+.next
+.DS_Store
+.vscode/settings.json
+.env
