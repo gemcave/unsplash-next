@@ -57,7 +57,7 @@ const Index = ({images}) => {
 Index.getInitialProps = async function() {
   const res = await fetch('https://api.unsplash.com/photos', {
 		headers: {
-			Authorization: `Client-ID eIihwKtIumfukrBKdlSGGtGnymtWtvMY_kupGbQayus`
+			Authorization: `Client-ID ${process.env.ACCESS_KEY}`
 		}
 });
 	const data = await res.json();

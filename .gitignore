@@ -5,3 +5,4 @@ public/img/
 .vscode/settings.json
 .env
 .env.build
+.now
