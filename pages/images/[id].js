@@ -6,7 +6,7 @@ const ImagePost = ({image}) => {
 	const {twitter_username, instagram_username} = image.user
 
 	return (
-		<>
+		<div className="container-image">
 			<Link href='/'>
 				<a>&larr;</a>
 			</Link>
@@ -15,19 +15,25 @@ const ImagePost = ({image}) => {
 				{instagram_username && <a href={`https://www.instagram.com/${image.user.instagram_username}`}><FaInstagram/></a>}
 				{twitter_username && <a href={`https://twitter.com/${image.user.twitter_username}`}><FaTwitterSquare/></a>}
 			</div>
-			<img src={image.urls.regular} alt=""/>
+			<img className="image__regular" src={image.urls.regular} alt=""/>
 			<style jsx>{`
-					h2 {
-						font-family: Roboto;
-					}
+
 					.social a {
 						color: #333;
 					}
 					.social a + a {
 						margin-left: 10px;
 					}
+
+					.container-image {
+						margin: 60px;
+						margin-top: 20px;	
+					}
+					.image__regular {
+						max-height: 600px;
+					}
 			`}</style>
-		</>
+		</div>
 	)
 }
 
