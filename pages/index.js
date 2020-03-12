@@ -1,11 +1,22 @@
 import fetch from 'isomorphic-unfetch';
 import ImagePost from '../components/ImagePost'
+import { useState } from 'react';
+import Router from 'next/router'
 
 const Index = ({images}) => {
+	const [term, setTerm] = useState('')
+
+	const	onFormSubmit = (event) => {
+		event.preventDefault();
+		Router.push(`/search?term=${term}`)
+	}
 	return (
 		<div>
 			<div className="container">
-			<h1>Unsplah Images</h1>
+				<h1>Unsplah Images</h1>
+				<form onSubmit={onFormSubmit}>
+					<input type="text" name="term" onChange={(e) => setTerm(e.target.value) } />
+				</form>
 				<div className="images">
 					{images.map((image) => (
 							<ImagePost key={image.id} image={image} />
@@ -57,7 +68,7 @@ const Index = ({images}) => {
 Index.getInitialProps = async function() {
   const res = await fetch('https://api.unsplash.com/photos', {
 		headers: {
-			Authorization: `Client-ID eIihwKtIumfukrBKdlSGGtGnymtWtvMY_kupGbQayus`
+			Authorization: `Client-ID ${process.env.ACCESS_KEY}`
 		}
 });
 	const data = await res.json();
