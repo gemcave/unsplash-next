@@ -1,24 +1,32 @@
 import ImagePost from "../components/ImagePost";
 import Link from 'next/link'
 
-const Search = ({images}) => {
-	console.log(images)
+const search = ({images, term}) => {
 	return (
-		<div>
+		<div className="search-results">
 			<Link href='/'>
 				<a>&larr;</a>
 			</Link>
-			Search page
+
+			<h1>Search results for <strong>{term}</strong>:</h1>
 			<div className="images">
-			{images.map((image) => (
-							<ImagePost key={image.id} image={image} />
-			))}
+				{images.map((image) => (
+								<ImagePost key={image.id} image={image} />
+				))}
 			</div>
+			<style jsx>{`
+				.search-results {
+					margin: 40px;
+				}
+				h1 {
+					font-weight: 400;
+				}
+    `}</style>
 		</div>
 	);
 };
 
-Search.getInitialProps = async function({query}) {
+search.getInitialProps = async function({query}) {
 		const { term } = query
 		
 		const res = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${term}`, {
@@ -28,7 +36,10 @@ Search.getInitialProps = async function({query}) {
 		})
 		const data = await res.json();
 
-	return {images: data.results}
+	return {
+		images: data.results,
+		term: term
+	}
 }
 
-export default Search;
+export default search;
