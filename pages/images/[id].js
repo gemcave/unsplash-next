@@ -30,7 +30,7 @@ const ImagePost = ({image}) => {
 						margin-top: 20px;	
 					}
 					.image__regular {
-						max-height: 600px;
+						max-width: 400px;
 					}
 			`}</style>
 		</div>

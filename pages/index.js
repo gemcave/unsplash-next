@@ -17,7 +17,7 @@ const Index = ({images}) => {
 
 			<style jsx>{`
 				.container {
-					margin: 40px;
+					padding: 40px;
 				}
 
 				span.location {
