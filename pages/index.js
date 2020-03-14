@@ -1,8 +1,8 @@
-import fetch from 'isomorphic-unfetch';
-import ImagePost from '../components/ImagePost'
+import ImagePost from '../components/ImagePost';
 import SearchInput from '../components/Search';
 import Pagination from '../components/Pagination';
-import { useState } from 'react';
+import fetch from 'isomorphic-unfetch';
+
 
 const Index = ({images, totalPages, page}) => {
 	return (
