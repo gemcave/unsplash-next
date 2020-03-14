@@ -1,8 +1,10 @@
 import fetch from 'isomorphic-unfetch';
 import ImagePost from '../components/ImagePost'
 import SearchInput from '../components/Search';
+import Pagination from '../components/Pagination';
+import { useState } from 'react';
 
-const Index = ({images}) => {
+const Index = ({images, totalPages, page}) => {
 	return (
 		<div>
 			<div className="container">
@@ -13,6 +15,10 @@ const Index = ({images}) => {
 							<ImagePost key={image.id} image={image} />
 					))}
 				</div>
+				<Pagination 
+						totalPages={totalPages} 
+						currentPage={page} 
+						marginTop={26}/>
 			</div>
 
 			<style jsx>{`
@@ -29,17 +35,27 @@ const Index = ({images}) => {
 	)
 }
 
-Index.getInitialProps = async function() {
-  const res = await fetch('https://api.unsplash.com/photos', {
-		headers: {
-			Authorization: `Client-ID ${process.env.ACCESS_KEY}`
-		}
-});
-	const data = await res.json();
+export async function getServerSideProps({query: {page = 1}}) {
+	try {
+		const res = await fetch(`https://api.unsplash.com/photos?page=${page}`, {
+			headers: {
+				Authorization: `Client-ID ${process.env.ACCESS_KEY}`,
+			}
+		});
+		const data = await res.json();
+		const totalPages = res.headers.get('x-total');
 
-  return {
-    images: data.map(image => image)
-  };
+		return {
+			props: {
+				images: data.map(image => image),
+				totalPages,
+				page: parseInt(page, 10)
+			}
+		};
+	} catch(err) {
+		console.log(err)
+	}
+
 };
 
 export default Index;
