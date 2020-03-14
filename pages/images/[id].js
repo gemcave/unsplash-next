@@ -1,6 +1,6 @@
-import fetch from 'isomorphic-unfetch';
 import {FaInstagram, FaTwitterSquare} from 'react-icons/fa'
 import Link from 'next/link'
+import fetch from 'isomorphic-unfetch';
 
 const ImagePost = ({image}) => {
 	const {twitter_username, instagram_username} = image.user

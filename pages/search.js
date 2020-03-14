@@ -1,6 +1,7 @@
 import ImagePost from "../components/ImagePost";
-import Link from 'next/link'
+import Link from 'next/link';
 import Pagination from "../components/Pagination";
+import fetch from 'isomorphic-unfetch';
 
 const search = ({images, term, page, totalPages}) => {
 	return (
