@@ -5,8 +5,6 @@ public/img/
 .vscode/settings.json
 .env
 .env.build
-.now/project.json
-
 .now/README.txt
-
 .now
+.now/project.json

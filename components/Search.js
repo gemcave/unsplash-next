@@ -12,11 +12,12 @@ const SearchInput = () => {
 	return (
 		<>
 			<form onSubmit={onFormSubmit}>
-					<input type="text" 
-								 name="term" 
-								 placeholder="nature,beauty,product..." 
-								 onChange={(e) => setTerm(e.target.value) }
-								 value={term}/>
+				<input type="text" 
+								name="term" 
+								placeholder="nature,beauty,product..." 
+								onChange={(e) => setTerm(e.target.value) }
+								value={term}
+								style={{fontSize: '16px'}}/>
 			</form>
 		</>
 	);

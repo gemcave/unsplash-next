@@ -1,7 +1,8 @@
 import ImagePost from "../components/ImagePost";
 import Link from 'next/link'
+import Pagination from "../components/Pagination";
 
-const search = ({images, term}) => {
+const search = ({images, term, page, totalPages}) => {
 	return (
 		<div className="search-results">
 			<Link href='/'>
@@ -14,6 +15,11 @@ const search = ({images, term}) => {
 								<ImagePost key={image.id} image={image} />
 				))}
 			</div>
+			<Pagination totalPages={totalPages} 
+									hrefAddress={'/search'}
+									currentPage={page}
+									term={term}
+									marginTop={26}/>
 			<style jsx>{`
 				.search-results {
 					margin: 40px;
@@ -26,19 +32,23 @@ const search = ({images, term}) => {
 	);
 };
 
-search.getInitialProps = async function({query}) {
-		const { term } = query
+export async function getServerSideProps({query: {page = 1, term}}) {
 		
-		const res = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${term}`, {
+		const res = await fetch(`https://api.unsplash.com/search/photos?page=${page}&query=${term}`, {
 			headers: {
 				Authorization: `Client-ID ${process.env.ACCESS_KEY}`
 			}
 		})
 		const data = await res.json();
+		const totalPages = res.headers.get('x-total');
 
 	return {
-		images: data.results,
-		term: term
+		props: {
+			images: data.results,
+			term,
+			totalPages,
+			page
+		}
 	}
 }
 
