@@ -37,7 +37,7 @@ const ImagePost = ({image}) => {
 	)
 }
 
-ImagePost.getInitialProps = async function({query}) {
+export async function getServerSideProps({query}) {
 		const { id } = query
 		
 		const res = await fetch(`https://api.unsplash.com/photos/${id}`, {
@@ -47,7 +47,9 @@ ImagePost.getInitialProps = async function({query}) {
 		});
 		const data = await res.json();
 		return {
-			image: data
+			props:  {
+				image: data
+			}
 		};
 	};
 	

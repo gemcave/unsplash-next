@@ -8,7 +8,7 @@ const Index = ({images, totalPages, page}) => {
 	return (
 		<div>
 			<div className="container">
-				<h1>Unsplah Images</h1>
+				<h1>Unsplash Images</h1>
 				<SearchInput />
 				<div className="images">
 					{images.map((image) => (
