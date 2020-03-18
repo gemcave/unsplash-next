@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Router from 'next/router'
+import Router from 'next/router';
+import {FaSearch} from 'react-icons/fa';
 
 const SearchInput = () => {
 	const [term, setTerm] = useState('')
@@ -19,6 +20,7 @@ const SearchInput = () => {
 								value={term}
 								style={{fontSize: '16px'}}/>
 			</form>
+			{/* <button onClick={onSubmit}><FaSearch /></button> */}
 		</>
 	);
 };
