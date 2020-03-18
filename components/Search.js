@@ -20,7 +20,7 @@ const SearchInput = () => {
 								value={term}
 								style={{fontSize: '16px'}}/>
 			</form>
-			<button onClick={onSubmit}><FaSearch /></button>
+			{/* <button onClick={onSubmit}><FaSearch /></button> */}
 		</>
 	);
 };
