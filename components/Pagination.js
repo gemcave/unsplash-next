@@ -41,13 +41,13 @@ const Pagination = ({ fontSize, currentPage, totalPages, term = '', hrefAddress 
 				padding: 15px;
 				border: 2px solid #333;
 				font-size: ${fontSize ? `${fontSize}px` : "16px"};
+				background: transparent;
+				outline: none;
 			}
 			.pagination button:hover {
 				text-decoration: underline;
 				cursor: pointer;
 			}
-
-
 		`}</style>
 		</div>
 	)

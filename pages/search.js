@@ -2,33 +2,44 @@ import ImagePost from "../components/ImagePost";
 import Link from 'next/link';
 import Pagination from "../components/Pagination";
 import fetch from 'isomorphic-unfetch';
+import {motion} from 'framer-motion';
+import {postVariants} from '../utils';
 
 const search = ({images, term, page, totalPages}) => {
 	return (
 		<div className="search-results">
-			<Link href='/'>
-				<a>&larr;</a>
-			</Link>
+			<motion.div
+							initial="initial"
+							animate="enter"
+							exit="exit"
+							variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+						>
+				<Link href='/'>
+					<a>&larr;</a>
+				</Link>
 
-			<h1>Search results for <strong>{term}</strong>:</h1>
-			<div className="images">
-				{images.map((image) => (
+				<h1>Search results for <strong>{term}</strong>:</h1>
+					<div className="images">
+						{images.map((image) => (
+							<motion.div variants={postVariants} key={image.id}>
 								<ImagePost key={image.id} image={image} />
-				))}
-			</div>
-			<Pagination totalPages={totalPages} 
-									hrefAddress={'/search'}
-									currentPage={page}
-									term={term}
-									marginTop={26}/>
+							</motion.div>
+						))}
+					</div>
+				<Pagination totalPages={totalPages} 
+										hrefAddress={'/search'}
+										currentPage={page}
+										term={term}
+										marginTop={26}/>
+			</motion.div>
 			<style jsx>{`
-				.search-results {
-					margin: 40px;
-				}
-				h1 {
-					font-weight: 400;
-				}
-    `}</style>
+					.search-results {
+						margin: 40px;
+					}
+					h1 {
+						font-weight: 400;
+					}
+			`}</style>
 		</div>
 	);
 };

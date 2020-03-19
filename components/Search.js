@@ -12,15 +12,31 @@ const SearchInput = () => {
 	
 	return (
 		<>
-			<form onSubmit={onFormSubmit}>
+			<form className="search-form" onSubmit={onFormSubmit}>
 				<input type="text" 
 								name="term" 
 								placeholder="nature,beauty,product..." 
 								onChange={(e) => setTerm(e.target.value) }
 								value={term}
 								style={{fontSize: '16px'}}/>
+				<button type="submit" style={{fontSize: '16px', cursor: 'pointer'}}><FaSearch /></button>
 			</form>
-			{/* <button onClick={onSubmit}><FaSearch /></button> */}
+	<style jsx>{`
+		.search-form {
+			display: inline-flex;
+		}
+		.search-form input {
+			border: 1px solid #767676;
+		}
+		.search-form button {
+			display: flex;
+			margin-left: 5px;
+			border: 1px solid #767676;
+			color: #333;
+			outline: none;
+			background: transparent;
+		}
+	`}</style>
 		</>
 	);
 };
