@@ -30,6 +30,7 @@ const SearchInput = () => {
 		}
 		.search-form button {
 			display: flex;
+			align-items: center;
 			margin-left: 5px;
 			border: 1px solid #767676;
 			color: #333;
