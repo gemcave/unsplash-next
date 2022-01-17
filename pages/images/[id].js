@@ -109,8 +109,9 @@ const ImagePost = ({ image }) => {
 
 export async function getServerSideProps({ query }) {
   const { id } = query;
+  const apiUrl = "https://api.unsplash.com/photos/";
 
-  const res = await fetch(`https://api.unsplash.com/photos/${id}`, {
+  const res = await fetch(`${apiUrl}${id}`, {
     headers: {
       Authorization: `Client-ID ${process.env.ACCESS_KEY}`,
     },
