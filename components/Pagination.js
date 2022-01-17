@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Router from "next/router";
 import Link from "next/link";
 
@@ -11,9 +11,17 @@ const Pagination = ({
   marginTop,
   ...otherProps
 }) => {
+  const { query } = Router;
   const actualPages = Math.floor(totalPages / 10);
   const actualTerm = term ? `&term=${term}` : "";
   const actualPage = parseInt(currentPage);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [query]);
 
   const handlePrev = () =>
     Router.push(
