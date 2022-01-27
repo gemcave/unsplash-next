@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Pagination = ({
@@ -11,7 +11,7 @@ const Pagination = ({
   marginTop,
   ...otherProps
 }) => {
-  const { query } = Router;
+  const { query } = useRouter();
   const actualPages = Math.floor(totalPages / 10);
   const actualTerm = term ? `&term=${term}` : "";
   const actualPage = parseInt(currentPage);
