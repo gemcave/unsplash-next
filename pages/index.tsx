@@ -42,7 +42,7 @@ const Index = ({ images, totalPages, page }) => {
   );
 };
 
-export async function getServerSideProps({ query: { page = 1 } }) {
+export async function getServerSideProps({ query: { page = "1" } }) {
   try {
     const res = await fetch(`https://api.unsplash.com/photos?page=${page}`, {
       headers: {

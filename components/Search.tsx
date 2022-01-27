@@ -1,16 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Router from "next/router";
 import { FaSearch } from "react-icons/fa";
 
-const SearchInput = () => {
+const SearchInput: React.FC = () => {
   const [term, setTerm] = useState("");
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     Router.push(`/search?term=${term}`);
   };
 
-  const handleInput = (e) => setTerm(e.target.value);
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setTerm(e.target.value);
+  };
 
   return (
     <>

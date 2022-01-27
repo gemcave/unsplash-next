@@ -1,17 +1,25 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+interface PaginationProps {
+  fontSize?: number;
+  totalPages: number;
+  term?: string;
+  hrefAddress?: string;
+  marginTop?: number;
+  currentPage: any;
+}
 
-const Pagination = ({
+const Pagination: React.FC<PaginationProps> = ({
   fontSize,
   currentPage,
   totalPages,
   term = "",
   hrefAddress = "/",
   marginTop,
-  ...otherProps
+  ..._otherProps
 }) => {
-  const { query } = useRouter();
+  const { query, push: routerPush } = useRouter();
   const actualPages = Math.floor(totalPages / 10);
   const actualTerm = term ? `&term=${term}` : "";
   const actualPage = parseInt(currentPage);
@@ -24,11 +32,11 @@ const Pagination = ({
   }, [query]);
 
   const handlePrev = () =>
-    Router.push(
+    routerPush(
       `${hrefAddress}?page=${actualPage > 1 ? actualPage - 1 : 1}${actualTerm}`
     );
   const handleNext = () =>
-    Router.push(
+    routerPush(
       `${hrefAddress}?page=${
         actualPage < totalPages ? actualPage + 1 : 1
       }${actualTerm}`
