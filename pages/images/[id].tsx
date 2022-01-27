@@ -2,6 +2,7 @@ import { FaInstagram, FaTwitterSquare } from "react-icons/fa";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { motion } from "framer-motion";
+import Head from "next/head";
 
 let easing = [0.175, 0.85, 0.42, 0.96];
 
@@ -47,10 +48,18 @@ const backVariants = {
 };
 
 const ImagePost = ({ image }) => {
-  const { twitter_username, instagram_username } = image.user;
+  const {
+    twitter_username,
+    instagram_username,
+    name: authorName,
+    location,
+  } = image.user;
 
   return (
     <>
+      <Head>
+        <title>Next Unsplash - {`${authorName}'s photo`}</title>
+      </Head>
       <div className="container-image">
         <motion.div initial="exit" animate="enter" exit="exit">
           <motion.div variants={backVariants}>
@@ -60,10 +69,7 @@ const ImagePost = ({ image }) => {
           </motion.div>
           <motion.div variants={textVariants}>
             <h2>
-              {image.user.name}{" "}
-              <span className="location">
-                {image.user.location && image.user.location}
-              </span>
+              {image.user.name} <span className="location">{location}</span>
             </h2>
           </motion.div>
           <div className="social">

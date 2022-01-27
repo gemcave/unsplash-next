@@ -1,3 +1,4 @@
+import Head from "next/head";
 import ImagePost from "../components/ImagePost";
 import SearchInput from "../components/Search";
 import Pagination from "../components/Pagination";
@@ -8,6 +9,9 @@ import { postVariants } from "../utils";
 const Index = ({ images, totalPages, page }) => {
   return (
     <div>
+      <Head>
+        <title>Next Unsplash</title>
+      </Head>
       <div className="container">
         <h1>Unsplash Images</h1>
         <SearchInput />
